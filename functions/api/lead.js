@@ -5,7 +5,8 @@ export async function onRequestPost(context) {
 
     // 1) Champs formulaire
     const email = (formData.get("email") || "").toString().trim();
-    const flightNumber = (formData.get("flight_number") || "").toString().trim();
+	const flightNumberRaw = (formData.get("flight_number") || "").toString().trim();
+	const flightNumber = flightNumberRaw.toUpperCase();
     const flightDate = (formData.get("flight_date") || "").toString().trim();
     const comment = (formData.get("comment") || "").toString().trim();
 
@@ -62,7 +63,8 @@ export async function onRequestPost(context) {
       });
     }
 
-    const subject = "[Arrivée Retardée] Nouvelle demande de vérification";
+	const safeFlight = flightNumber || "VOL";
+	const subject = `[Arrivée Retardée] ${safeFlight} – Nouvelle demande de vérification`;
 
     const text =
 `Nouvelle demande
@@ -83,6 +85,7 @@ Commentaire: ${comment || "(vide)"}
       body: JSON.stringify({
         from: resendFrom,
         to: [resendTo],
+		reply_to: email,
         subject,
         text,
       }),
