@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Vérification rapide de votre situation – Arrivée Retardée</title>
+  <meta name="description" content="Répondez à quelques questions simples pour déterminer si votre situation peut être éligible à une indemnisation." />
+
+  <style>
+    body{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background: #f8fafc;
+      color: #0f172a;
+    }
+    main{
+      max-width: 720px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+    h1{
+      margin: 0 0 0.75rem;
+      font-size: 1.6rem;
+      line-height: 1.2;
+    }
+    h2{
+      margin: 1.5rem 0 0.5rem;
+      font-size: 1.15rem;
+      line-height: 1.25;
+    }
+    p{
+      line-height: 1.6;
+      margin: 0.75rem 0;
+    }
+    hr{
+      border: none;
+      border-top: 1px solid #e2e8f0;
+      margin: 1.5rem 0;
+    }
+    .nav{
+      margin: 0 0 1rem;
+      font-size: 0.95rem;
+      color: #475569;
+    }
+    .nav a{
+      color: #2563eb;
+      text-decoration: none;
+    }
+    .nav a:hover{
+      text-decoration: underline;
+    }
+    .lead{
+      font-size: 1.05rem;
+    }
+    .note{
+      margin: 1rem 0 0;
+      font-size: 0.95rem;
+      color: #475569;
+      background: #f1f5f9;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+    }
+
+    form{
+      margin-top: 1rem;
+    }
+    fieldset{
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 1rem;
+      margin: 1rem 0;
+      background: #ffffff;
+    }
+    legend{
+      font-weight: 700;
+      padding: 0 0.5rem;
+    }
+    label{
+      display: block;
+      margin: 0.4rem 0;
+      line-height: 1.4;
+    }
+
+    .btn{
+      display: inline-block;
+      margin-top: 0.25rem;
+      padding: 0.75rem 1.25rem;
+      background: #2563eb;
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .result{
+      display: none;
+      margin-top: 1.25rem;
+      padding: 1rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      background: #ffffff;
+    }
+    .result p{
+      margin: 0.5rem 0;
+    }
+    .result strong{
+      display: inline-block;
+      margin-top: 0.25rem;
+    }
+    .cta-link{
+      display: inline-block;
+      margin-top: 0.75rem;
+      text-decoration: none;
+      font-weight: 700;
+      color: #2563eb;
+    }
+    .cta-link:hover{
+      text-decoration: underline;
+    }
+
+    footer{
+      max-width: 720px;
+      margin: 1.25rem auto 0;
+      padding: 0 2rem 2rem;
+      color: #475569;
+    }
+    footer a{
+      color: #2563eb;
+      text-decoration: none;
+    }
+    footer a:hover{
+      text-decoration: underline;
+    }
+    footer small{
+      display: inline-block;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+
+    <p class="nav">
+      <a href="/">Accueil</a> › <a href="/verifier-eligibilite">Vérifier mon éligibilité</a> › Vérification rapide
+    </p>
+
+    <h1>Vérification rapide (30 secondes)</h1>
+
+    <p class="lead">
+      Répondez à ces 3 questions pour obtenir un <strong>résultat indicatif</strong>.
+      Cette vérification est <strong>gratuite</strong> et <strong>sans engagement</strong>.
+    </p>
+
+    <p class="note">
+      Le résultat dépend aussi des circonstances du vol (ex. météo, sécurité, grèves, etc.).
+      Si vous n’êtes pas sûr de certaines informations, choisissez “Je ne sais pas”.
+    </p>
+
+    <form id="quickCheck">
+      <fieldset>
+        <legend>1) Quel est votre problème ?</legend>
+        <label><input type="radio" name="issue" value="delay" required> Retard à l’arrivée</label>
+        <label><input type="radio" name="issue" value="cancel"> Annulation</label>
+        <label><input type="radio" name="issue" value="missed"> Correspondance manquée</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>2) Quel était le retard à l’arrivée ?</legend>
+        <label><input type="radio" name="delay" value="lt3" required> Moins de 3 heures</label>
+        <label><input type="radio" name="delay" value="gte3"> 3 heures ou plus</label>
+        <label><input type="radio" name="delay" value="unknown"> Je ne sais pas</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>3) Votre vol date de quand ?</legend>
+        <label><input type="radio" name="time" value="within3y" required> Il y a moins de 3 ans</label>
+        <label><input type="radio" name="time" value="over3y"> Il y a plus de 3 ans</label>
+        <label><input type="radio" name="time" value="unknown"> Je ne sais pas</label>
+      </fieldset>
+
+      <button class="btn" type="submit">Afficher mon résultat</button>
+    </form>
+
+    <div id="result" class="result">
+      <h2>Résultat indicatif</h2>
+      <p id="resultText"></p>
+      <p id="nextStep" style="font-weight:700;"></p>
+      <a id="nextLink" class="cta-link" href="#">Continuer</a>
+
+      <p class="note" style="margin-top:1rem;">
+        Ce résultat est indicatif. L’éligibilité réelle dépend aussi d’autres critères
+        (par exemple les circonstances extraordinaires).
+      </p>
+    </div>
+
+  </main>
+
+  <footer>
+    <hr>
+    <p>
+      <a href="/mentions-legales">Mentions légales</a> |
+      <a href="/politique-de-confidentialite">Politique de confidentialité</a>
+    </p>
+    <p>
+      <small>© Arrivée Retardée – Service d’information et de mise en relation</small>
+    </p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('quickCheck');
+    const resultBox = document.getElementById('result');
+    const resultText = document.getElementById('resultText');
+    const nextStep = document.getElementById('nextStep');
+    const nextLink = document.getElementById('nextLink');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const issue = form.elements['issue'].value;
+      const delay = form.elements['delay'].value;
+      const time = form.elements['time'].value;
+
+      // Cas "trop ancien"
+      if (time === 'over3y') {
+        resultText.textContent =
+          "Votre vol semble dater de plus de 3 ans. Dans beaucoup de cas, cela peut réduire fortement les chances d’indemnisation.";
+        nextStep.textContent =
+          "Vous pouvez quand même demander une vérification manuelle si vous pensez avoir un cas particulier.";
+        nextLink.textContent = "Demander une vérification manuelle";
+        nextLink.href = "/contact";
+        showResult();
+        return;
+      }
+
+      // Annulation / correspondance : souvent potentiellement éligible, mais dépend des conditions
+      if (issue === 'cancel' || issue === 'missed') {
+        resultText.textContent =
+          "Votre situation peut être éligible selon les circonstances (délais, information reçue, alternatives proposées, etc.).";
+        nextStep.textContent =
+          "Étape suivante : transmettre les informations essentielles pour une vérification plus précise.";
+        nextLink.textContent = "Continuer";
+        nextLink.href = "/contact";
+        showResult();
+        return;
+      }
+
+      // Retard : seuil 3h important
+      if (issue === 'delay') {
+        if (delay === 'gte3') {
+          resultText.textContent =
+            "Avec un retard d’au moins 3 heures, une indemnisation est souvent envisageable (selon les conditions du vol).";
+          nextStep.textContent =
+            "Étape suivante : transmettre les informations essentielles pour une vérification plus précise.";
+          nextLink.textContent = "Continuer";
+          nextLink.href = "/contact";
+          showResult();
+          return;
+        }
+
+        if (delay === 'lt3') {
+          resultText.textContent =
+            "Avec moins de 3 heures de retard, une indemnisation est souvent moins probable, mais certaines exceptions existent.";
+          nextStep.textContent =
+            "Si vous voulez être sûr, vous pouvez demander une vérification manuelle.";
+          nextLink.textContent = "Demander une vérification manuelle";
+          nextLink.href = "/contact";
+          showResult();
+          return;
+        }
+
+        // unknown delay
+        resultText.textContent =
+          "Sans la durée exacte du retard, il est difficile de conclure. Le seuil important est souvent 3 heures ou plus.";
+        nextStep.textContent =
+          "Vous pouvez demander une vérification manuelle (avec le numéro de vol + date).";
+        nextLink.textContent = "Demander une vérification manuelle";
+        nextLink.href = "/contact";
+        showResult();
+        return;
+      }
+
+      // fallback
+      resultText.textContent = "Merci. Vous pouvez continuer pour une vérification manuelle.";
+      nextStep.textContent = "Étape suivante : transmettre les informations essentielles.";
+      nextLink.textContent = "Continuer";
+      nextLink.href = "/contact";
+      showResult();
+    });
+
+    function showResult() {
+      resultBox.style.display = "block";
+      resultBox.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  </script>
+</body>
+</html>
